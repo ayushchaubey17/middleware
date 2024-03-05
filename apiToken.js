@@ -2,7 +2,7 @@ let express = require('express');
 
 let app = express();
 
-app.listen(8080,()=>{console.log("listening")})
+let fun = app.listen(8080,()=>{console.log("listening")})
 
 app.use("/api",(req,res,next)=>{
     let {token} = req.query;
@@ -17,3 +17,4 @@ app.get("/api",(req,res)=>{
     res.send("data ");
 })
 
+module.exports = {fun,app};

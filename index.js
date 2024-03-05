@@ -41,6 +41,8 @@ app.get("/name",(req,res)=>{
 })
 
 
+
+// this use when no page is found..
 app.use((req,res)=>{
     res.send("page not found");
 });
