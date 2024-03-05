@@ -3,9 +3,14 @@ let app = express();
 
 // 1 middleware
 app.use("/name",(req,res,next)=>{
-    console.log("m1");
+    console.log("I am m1");
+   next();
+},(req,res,next)=>{
+    console.log("I am m2");
     next();
-});
+}
+
+);
 
 //2, middleware
 // app.use("/name",(req,res,next)=>{
@@ -16,7 +21,7 @@ app.use("/name",(req,res,next)=>{
 // })
 
 
-app.use('/',(req,res,next)=>{
+app.use('/body',(req,res,next)=>{
     req.timeNow = new Date(Date.now()).toString() ;
     console.log(req.timeNow)
     console.log(req.method, req.hostname,req.path);
@@ -27,10 +32,15 @@ app.listen(8080,()=>{
     console.log("listening")
 });
 
-app.get("/",(req,res)=>{
+app.get("/body",(req,res)=>{
     res.send("hyy  i am the page");
 })
 
 app.get("/name",(req,res)=>{
     res.send("hyy  i am the name page");
 })
+
+
+app.use((req,res)=>{
+    res.send("page not found");
+});
